@@ -1,0 +1,64 @@
+<html>
+<head>
+ <style type="text/css">
+  body {
+    
+    background-color:#E0FFFF }
+  </style>
+  <script>
+  function f1(){
+  	var name=document.getElementById('name').value;
+  	var pass=document.getElementById('pass').value;
+  if(navigator.appname=="Microsoft Internet Explorer"){
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	else
+	{
+		xhttp = new XMLHttpRequest();
+		xhttp.open("get","admin_check.php?name="+name+"&pass="+pass,true);
+		xhttp.send();
+		xhttp.onreadystatechange=function() {
+    		if(xhttp.readyState == 4) {
+    			var a = xhttp.responseText;
+    			//alert(a);
+    			if(a=='addproduct.php')
+    		{
+    			window.location.href=a;
+			//
+			}else{
+				document.getElementById('user_check').innerHTML=xhttp.responseText;	
+			}
+		}else{}
+	}
+	}
+}
+  </script>
+</head>
+<body>
+	<hr><h2 align="center">Admin Login</h2><hr>
+	</br></br>
+	<div id="main" align="center" style="width:50%; height:50%; margin-left:300px; margin-top:100px">
+		
+		<fieldset>
+			<legend>Enter your details</legend>
+			
+				<table>
+				<tr>
+				<td>Admin Name:</td>
+				<td><input type="text" placeholder="Enter name" name="name" id="name"></td>
+				</tr>
+				<tr>
+				<td>Password:</td>
+				<td><input type="password" placeholder="Enter password" name="pass" id="pass"></td>
+				</tr>
+			</table>
+		</br></br>
+			<span id="user_check" name="user_check"></span></br>
+			<input type="submit" value="Sign In" onclick="f1()">&nbsp;&nbsp;
+			<input type="button" value="Create a new account">
+			
+		</fieldset>
+	</div>
+
+</body>
+</html>
